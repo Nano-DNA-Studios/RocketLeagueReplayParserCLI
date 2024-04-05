@@ -8,6 +8,11 @@
 		<PackAsTool>true</PackAsTool>
 		<ToolCommandName>rlreplay</ToolCommandName>
 		<PackageOutputPath>./nupkg</PackageOutputPath>
+
+		<PackageId>RocketLeagueReplayExtractorCLI</PackageId>
+		<Version>1.0.0</Version>
+		<Authors>MrDNA</Authors>
+		<Company>NanoDNA Studios</Company>
 	</PropertyGroup>
 
 </Project>
