@@ -6,7 +6,7 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<PackAsTool>true</PackAsTool>
-		<ToolCommandName>rlreplay</ToolCommandName>
+		<ToolCommandName>rlparse</ToolCommandName>
 		<PackageOutputPath>./nupkg</PackageOutputPath>
 
 		<PackageId>RocketLeagueReplayExtractorCLI</PackageId>
@@ -14,5 +14,9 @@
 		<Authors>MrDNA</Authors>
 		<Company>NanoDNA Studios</Company>
 	</PropertyGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\RocketLeagueReplayExtractorAPI\RocketLeagueReplayExtractorAPI\RocketLeagueReplayParserAPI.csproj" />
+	</ItemGroup>
 
 </Project>

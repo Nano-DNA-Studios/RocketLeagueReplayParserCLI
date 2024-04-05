@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34714.143
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RocketLeagueReplayExtractorCLI", "RocketLeagueReplayExtractorCLI.csproj", "{C22D2311-A9A8-4189-953E-A24BACBEEBAD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RocketLeagueReplayParserCLI", "RocketLeagueReplayParserCLI.csproj", "{C22D2311-A9A8-4189-953E-A24BACBEEBAD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RocketLeagueReplayExtractorAPI", "..\..\RocketLeagueReplayExtractorAPI\RocketLeagueReplayExtractorAPI\RocketLeagueReplayExtractorAPI.csproj", "{F524ECF3-938B-4BE8-9E4F-F4E5BBD0EF7D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RocketLeagueReplayParserAPI", "..\..\RocketLeagueReplayExtractorAPI\RocketLeagueReplayExtractorAPI\RocketLeagueReplayParserAPI.csproj", "{F524ECF3-938B-4BE8-9E4F-F4E5BBD0EF7D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DNARocketLeagueReplayParser", "..\..\DNA-Rocket-League-Replay-Parser\DNARocketLeagueReplayParser\DNARocketLeagueReplayParser.csproj", "{52F643E1-1664-4FFE-BB08-1593750E92DB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DNARocketLeagueReplayParser", "..\..\DNA-Rocket-League-Replay-Parser\DNARocketLeagueReplayParser\DNARocketLeagueReplayParser.csproj", "{2988A366-2F97-4D79-B70C-76BC69B268FB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{F524ECF3-938B-4BE8-9E4F-F4E5BBD0EF7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F524ECF3-938B-4BE8-9E4F-F4E5BBD0EF7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F524ECF3-938B-4BE8-9E4F-F4E5BBD0EF7D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{52F643E1-1664-4FFE-BB08-1593750E92DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{52F643E1-1664-4FFE-BB08-1593750E92DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{52F643E1-1664-4FFE-BB08-1593750E92DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{52F643E1-1664-4FFE-BB08-1593750E92DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2988A366-2F97-4D79-B70C-76BC69B268FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2988A366-2F97-4D79-B70C-76BC69B268FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2988A366-2F97-4D79-B70C-76BC69B268FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2988A366-2F97-4D79-B70C-76BC69B268FB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
