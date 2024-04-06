@@ -1,11 +1,13 @@
-﻿using System.Reflection;
-using RocketLeagueReplayParserCLI;
+﻿using RocketLeagueReplayParserCLI;
 using DNA_CLI_Framework.CommandHandlers;
 
 namespace RocketLeagueReplayExtractorCLI
 {
+    /// <summary>
+    /// Main Program Class for the Rocket League Replay Extractor CLI
+    /// </summary>
     internal class Program
-    { 
+    {
         //Commands to work on for now
 
         //Goals - Get the number of goals for each team, next argument is player name which will be used to get the goals for that player
@@ -17,22 +19,15 @@ namespace RocketLeagueReplayExtractorCLI
         //Possesion / Ball Touches?
         //Possession - Get the possession for each team, next argument is player name which will be used to get the possession for that player
 
+        /// <summary>
+        /// The Main Program Thread
+        /// </summary>
+        /// <param name="args"></param>
         static void Main(string[] args)
         {
-            Assembly.GetExecutingAssembly().GetTypes().Where(t => t.Namespace == "RocketLeagueReplayParserAPI").ToList().ForEach(Console.WriteLine);
-
-            string[] testArgs = { "Replays" };
-
-            ReplayParserDataManager dataManager = new ReplayParserDataManager();
-
             RocketLeagueReplayParser<ReplayParserDataManager> parser = new RocketLeagueReplayParser<ReplayParserDataManager>();
             parser.SetCommandHandler<FileOrDirectoryCommandHandler>();
-
-            if (args.Length == 0)
-                parser.RunApplication(testArgs);
-            else
-                parser.RunApplication(args);
-
+            parser.RunApplication(args);
         }
     }
 }

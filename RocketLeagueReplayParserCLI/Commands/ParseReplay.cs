@@ -23,25 +23,16 @@ namespace RocketLeagueReplayParserCLI.Commands
         /// <inheritdoc/>
         public override void ExecuteSolo(string[] args)
         {
-            /* if (Directory.Exists(args[0]))
-             {
-                 string[] files = Directory.GetFiles(args[0]);
-
-                 foreach (string file in files)
-                 {
-                     LoadReplay(file);
-                     DisplayBlueTeamData();
-                     DisplayOrangeTeamData();
-                 }
-
-                 return;
-             }*/
-
             LoadReplay(args[0]);
+            DisplayReplayInfo();
+        }
+
+        private void DisplayReplayInfo()
+        {
+            Console.WriteLine($"Replay Name: {Data.Replay.ReplayName}");
+
             DisplayBlueTeamData();
             DisplayOrangeTeamData();
-
-            //Display all Data
         }
 
         /// <summary>
@@ -82,7 +73,7 @@ namespace RocketLeagueReplayParserCLI.Commands
                 foreach (PlayerInfo player in Data.Replay.Players)
                 {
                     if (player.Team == Replay.ORANGE_TEAM)
-                        Console.WriteLine(string.Format("{0}   : Goals : {1} Assists : {2} Saves : {3} Shots : {4}", player.GetScoreboardInfo()));
+                        Console.WriteLine(string.Format("{0}   | Score : {1} Goals : {2} Assists : {3} Saves : {4} Shots : {5}", player.GetScoreboardInfo()));
                 }
             }
             finally

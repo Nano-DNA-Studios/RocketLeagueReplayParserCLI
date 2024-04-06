@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DNARocketLeagueReplayParser
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DNA-CLI-Framework", "..\..\DNA-CLI-Framework\DNA-CLI-Framework\DNA-CLI-Framework.csproj", "{5314D1C0-3A81-4FB6-945F-E06E69B83AB7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RocketLeagueParserAPI_UnitTests", "..\..\RocketLeagueReplayExtractorAPI\RocketLeagueParserAPI_UnitTests\RocketLeagueParserAPI_UnitTests.csproj", "{BA0A6C91-C4C9-4752-B51B-7B3600994278}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{5314D1C0-3A81-4FB6-945F-E06E69B83AB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5314D1C0-3A81-4FB6-945F-E06E69B83AB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5314D1C0-3A81-4FB6-945F-E06E69B83AB7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA0A6C91-C4C9-4752-B51B-7B3600994278}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA0A6C91-C4C9-4752-B51B-7B3600994278}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA0A6C91-C4C9-4752-B51B-7B3600994278}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA0A6C91-C4C9-4752-B51B-7B3600994278}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,22 +1,21 @@
 ﻿using DNA_CLI_Framework.Commands;
 using DNA_CLI_Framework.Data;
 using RocketLeagueReplayParserAPI;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.Design;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RocketLeagueReplayParserCLI.Commands
 {
+    /// <summary>
+    /// Handles the Rename Command
+    /// </summary>
     internal class Rename : Command
     {
+        /// <inheritdoc/>
         public override string CommandName => "Rename";
 
+        /// <inheritdoc/>
         public override string CommandDescription => "Renames the Replay File to the Same Name Given by the Player";
 
+        /// <inheritdoc/>
         public override void Execute(string[] args)
         {
             ReplayParserDataManager data = ApplicationData<ReplayParserDataManager>.Instance();
@@ -29,8 +28,6 @@ namespace RocketLeagueReplayParserCLI.Commands
                 data.Replay.RenameAndSave();
 
             Console.WriteLine($"Replay Renamed From {Path.GetFileName(data.ReplayPath)} To {data.Replay.ReplayName}");
-
-
         }
     }
 }
