@@ -9,13 +9,14 @@
 		<ToolCommandName>rlparse</ToolCommandName>
 		<PackageOutputPath>./nupkg</PackageOutputPath>
 
-		<PackageId>RocketLeagueReplayExtractorCLI</PackageId>
-		<Version>1.0.0</Version>
+		<PackageId>RocketLeagueReplayParserCLI</PackageId>
+		<Version>1.0.3</Version>
 		<Authors>MrDNA</Authors>
 		<Company>NanoDNA Studios</Company>
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\..\DNA-CLI-Framework\DNA-CLI-Framework\DNA-CLI-Framework.csproj" />
 	  <ProjectReference Include="..\..\RocketLeagueReplayExtractorAPI\RocketLeagueReplayExtractorAPI\RocketLeagueReplayParserAPI.csproj" />
 	</ItemGroup>
 

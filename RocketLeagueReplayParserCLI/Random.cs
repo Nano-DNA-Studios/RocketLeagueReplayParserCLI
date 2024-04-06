@@ -1,12 +1,12 @@
-﻿@ -1,361 +0,0 @@
-﻿using DNARocketLeagueReplayParser.ReplayStructure;
+﻿/*
+using DNARocketLeagueReplayParser.ReplayStructure;
 using DNARocketLeagueReplayParser.ReplayStructure.Actors;
 using DNARocketLeagueReplayParser.ReplayStructure.Frames;
 using DNARocketLeagueReplayParser.ReplayStructure.Mapping;
 using DNARocketLeagueReplayParser.ReplayStructure.UnrealEngineObjects;
-using Newtonsoft.Json;
 
-namespace DNARocketLeagueReplayParser.DNAReplay
+
+namespace RocketLeagueReplayExtractorCLI
 {
     public class ExtractReplayInfo
     {
@@ -360,3 +360,4 @@ namespace DNARocketLeagueReplayParser.DNAReplay
         }
     }
 }
+*/
