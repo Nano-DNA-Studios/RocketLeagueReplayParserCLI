@@ -38,6 +38,11 @@ namespace RocketLeagueReplayParserCLI.Commands
 
             DisplayTeamData(Replay.BLUE_TEAM);
             DisplayTeamData(Replay.ORANGE_TEAM);
+
+            (int blueTouch, int orangeTouch) = Data.Replay.GetBallTouches();
+
+            Console.WriteLine($"Blue : {blueTouch}");
+            Console.WriteLine($"Orange : {orangeTouch}");
         }
 
         /// <summary>
@@ -62,6 +67,9 @@ namespace RocketLeagueReplayParserCLI.Commands
 
                 scoreboardTable.AddRow(["Total", .. Data.Replay.GetTeamScoreboard(isBlue)]);
                 scoreboardTable.PrintTable();
+
+               
+
             }
             finally
             {
