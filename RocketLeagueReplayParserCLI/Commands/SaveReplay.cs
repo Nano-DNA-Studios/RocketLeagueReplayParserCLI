@@ -42,10 +42,7 @@ namespace RocketLeagueReplayParserCLI.Commands
                         Console.WriteLine($"Ball Speed (km/h) at frame ({gameObjectState.FrameNumber}): {v}   (Frame Delta = {gameObjectState.FrameNumber - lastFrameNumber}) (Time : {gameObjectState.Time})  (X :{x}   Y :{y}  Z :{z})   (Pos: {gameObjectState.RigidBody.Position.ToString()}");
 
                         lastFrameNumber = gameObjectState.FrameNumber;
-
-
-
-
+                        
                     }
 
                 }
