@@ -17,6 +17,7 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\..\DNA-CLI-Framework\DNA-CLI-Framework\DNA-CLI-Framework.csproj" />
+	  <ProjectReference Include="..\..\DNA-Rocket-League-Replay-Parser\DNARocketLeagueReplayParser\DNARocketLeagueReplayParser.csproj" />
 	  <ProjectReference Include="..\..\RocketLeagueReplayExtractorAPI\RocketLeagueReplayExtractorAPI\RocketLeagueReplayParserAPI.csproj" />
 	</ItemGroup>
 
