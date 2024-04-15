@@ -8,6 +8,7 @@
 		<PackAsTool>true</PackAsTool>
 		<ToolCommandName>rlparse</ToolCommandName>
 		<PackageOutputPath>./nupkg</PackageOutputPath>
+		<PackageReadmeFile>../README.md</PackageReadmeFile>
 
 		<PackageId>RocketLeagueReplayParserCLI</PackageId>
 		<Version>1.0.1</Version>
