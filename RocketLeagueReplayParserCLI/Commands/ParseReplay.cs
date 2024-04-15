@@ -38,11 +38,16 @@ namespace RocketLeagueReplayParserCLI.Commands
 
             DisplayTeamData(Replay.BLUE_TEAM);
             DisplayTeamData(Replay.ORANGE_TEAM);
+            DisplayTeamPercentage(GameStats.BallTouches, "Team Touches");
+            DisplayTeamPercentage(GameStats.BallPossessionTime, "Team Ball Possession Time");
+        }
 
-            (int blueTouch, int orangeTouch) = Data.Replay.GetBallTouches();
+        private void DisplayTeamPercentage(GameStats stat, string title)
+        {
+            float blueStat = Data.Replay.GetTeamStat(true, stat);
+            float orangeStat = Data.Replay.GetTeamStat(false, stat);
 
-            Console.WriteLine($"Blue : {blueTouch}");
-            Console.WriteLine($"Orange : {orangeTouch}");
+            ProgressBar.PrintProgressBar(blueStat, ProgressBar.BlueVsBlue, title, maxValue: blueStat + orangeStat, useBorder: true);
         }
 
         /// <summary>
@@ -58,7 +63,7 @@ namespace RocketLeagueReplayParserCLI.Commands
 
                 Console.ForegroundColor = isBlue ? ConsoleColor.Blue : ConsoleColor.Red;
                 scoreboardTable.SetTitle(isBlue ? "Blue Team Scoreboard" : "Orange Team Scoreboard");
-                scoreboardTable.AddRow("PlayerName", "Score", "Goals", "Assists", "Saves", "Shots");
+                scoreboardTable.AddRow("PlayerName", "Score", "Goals", "Assists", "Saves", "Shots", "Touches", "Touch Percentage (%)", "Ball Possesion Time (s)", "Ball Possession Percentage (%)");
                 foreach (PlayerInfo player in Data.Replay.Players)
                 {
                     if (player.Team == teamID)
@@ -67,9 +72,6 @@ namespace RocketLeagueReplayParserCLI.Commands
 
                 scoreboardTable.AddRow(["Total", .. Data.Replay.GetTeamScoreboard(isBlue)]);
                 scoreboardTable.PrintTable();
-
-               
-
             }
             finally
             {
@@ -89,7 +91,10 @@ namespace RocketLeagueReplayParserCLI.Commands
                 return;
 
             if (Path.GetExtension(fullPath) != ".replay")
+            {
+                Console.WriteLine("Invalid File Type, Please Provide a Replay File");
                 return;
+            }
 
             Data.Replay = new Replay(fullPath);
             Data.ReplayPath = fullPath;
