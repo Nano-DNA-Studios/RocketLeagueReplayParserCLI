@@ -1,5 +1,6 @@
 ﻿using DNA_CLI_Framework.Commands;
 using DNA_CLI_Framework.Data;
+using DNA_CLI_Framework;
 using RocketLeagueReplayParserAPI;
 
 namespace RocketLeagueReplayParserCLI.Commands
@@ -27,54 +28,50 @@ namespace RocketLeagueReplayParserCLI.Commands
             DisplayReplayInfo();
         }
 
+        /// <summary>
+        /// Displays a Summary of the Replays Info
+        /// </summary>
         private void DisplayReplayInfo()
         {
+            Console.WriteLine($"Replay File Name: {Data.Replay.GetReplayFileName()}");
             Console.WriteLine($"Replay Name: {Data.Replay.ReplayName}");
 
-            DisplayBlueTeamData();
-            DisplayOrangeTeamData();
+            DisplayTeamData(Replay.BLUE_TEAM);
+            DisplayTeamData(Replay.ORANGE_TEAM);
+            DisplayTeamPercentage(GameStats.BallTouches, "Team Touches");
+            DisplayTeamPercentage(GameStats.BallPossessionTime, "Team Ball Possession Time");
+        }
+
+        private void DisplayTeamPercentage(GameStats stat, string title)
+        {
+            float blueStat = Data.Replay.GetTeamStat(true, stat);
+            float orangeStat = Data.Replay.GetTeamStat(false, stat);
+
+            ProgressBar.PrintProgressBar(blueStat, ProgressBar.BlueVsBlue, title, maxValue: blueStat + orangeStat, useBorder: true);
         }
 
         /// <summary>
-        /// Displays the Blue Team Data
+        /// Displays the Entire Teams Data plus individual Player Data in the Score Board Format
         /// </summary>
-        private void DisplayBlueTeamData()
+        /// <param name="teamID"> The Team ID, 0 for Blue, 1 for Orange </param>
+        private void DisplayTeamData(int teamID)
         {
             try
             {
-                Console.ForegroundColor = ConsoleColor.Blue;
-                Console.WriteLine($"Blue Team");
-                Console.WriteLine($"Goals: {Data.Replay.BlueTeamGoals}");
-                Console.WriteLine($"Saves: {Data.Replay.GetTeamSaves(true)}");
+                bool isBlue = teamID == Replay.BLUE_TEAM;
+                Table scoreboardTable = new Table();
 
+                Console.ForegroundColor = isBlue ? ConsoleColor.Blue : ConsoleColor.Red;
+                scoreboardTable.SetTitle(isBlue ? "Blue Team Scoreboard" : "Orange Team Scoreboard");
+                scoreboardTable.AddRow("PlayerName", "Score", "Goals", "Assists", "Saves", "Shots", "Touches", "Touch Percentage (%)", "Ball Possesion Time (s)", "Ball Possession Percentage (%)");
                 foreach (PlayerInfo player in Data.Replay.Players)
                 {
-                    if (player.Team == Replay.BLUE_TEAM)
-                        Console.WriteLine(string.Format("{0}   | Score : {1} Goals : {2} Assists : {3} Saves : {4} Shots : {5}", player.GetScoreboardInfo()));
+                    if (player.Team == teamID)
+                        scoreboardTable.AddRow(player.GetScoreboardInfo());
                 }
-            }
-            finally
-            {
-                Console.ResetColor();
-            }
-        }
 
-        /// <summary>
-        /// Displays the Orange Team Data
-        /// </summary>
-        private void DisplayOrangeTeamData()
-        {
-            try
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine($"Orange Team");
-                Console.WriteLine($"Goals: {Data.Replay.OrangeTeamGoals}");
-                Console.WriteLine($"Saves: {Data.Replay.GetTeamSaves(false)}");
-                foreach (PlayerInfo player in Data.Replay.Players)
-                {
-                    if (player.Team == Replay.ORANGE_TEAM)
-                        Console.WriteLine(string.Format("{0}   | Score : {1} Goals : {2} Assists : {3} Saves : {4} Shots : {5}", player.GetScoreboardInfo()));
-                }
+                scoreboardTable.AddRow(["Total", .. Data.Replay.GetTeamScoreboard(isBlue)]);
+                scoreboardTable.PrintTable();
             }
             finally
             {
@@ -94,7 +91,10 @@ namespace RocketLeagueReplayParserCLI.Commands
                 return;
 
             if (Path.GetExtension(fullPath) != ".replay")
+            {
+                Console.WriteLine("Invalid File Type, Please Provide a Replay File");
                 return;
+            }
 
             Data.Replay = new Replay(fullPath);
             Data.ReplayPath = fullPath;

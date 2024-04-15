@@ -8,17 +8,6 @@ namespace RocketLeagueReplayExtractorCLI
     /// </summary>
     internal class Program
     {
-        //Commands to work on for now
-
-        //Goals - Get the number of goals for each team, next argument is player name which will be used to get the goals for that player
-        //Saves - Get the number of saves for each team, next argument is player name which will be used to get the saves for that player
-        //Assists - Get the number of assists for each team, next argument is player name which will be used to get the assists for that player
-        //Score - Get the score for each player, next argument is player name which will be used to get the score for that player
-        //Shots - Get the number of shots for each team, next argument is player name which will be used to get the shots for that player
-
-        //Possesion / Ball Touches?
-        //Possession - Get the possession for each team, next argument is player name which will be used to get the possession for that player
-
         /// <summary>
         /// The Main Program Thread
         /// </summary>
