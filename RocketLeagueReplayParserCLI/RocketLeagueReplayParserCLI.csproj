@@ -7,19 +7,24 @@
 		<Nullable>enable</Nullable>
 		<PackAsTool>true</PackAsTool>
 		<ToolCommandName>rlparse</ToolCommandName>
-		<PackageOutputPath>./nupkg</PackageOutputPath>
-		<PackageReadmeFile>../README.md</PackageReadmeFile>
+		<PackageOutputPath>../Release</PackageOutputPath>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
 
 		<PackageId>RocketLeagueReplayParserCLI</PackageId>
-		<Version>1.0.1</Version>
+		<Version>1.0.2</Version>
 		<Authors>MrDNA</Authors>
 		<Company>NanoDNA Studios</Company>
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\DNA-CLI-Framework\DNA-CLI-Framework\DNA-CLI-Framework.csproj" />
-	  <ProjectReference Include="..\..\DNA-Rocket-League-Replay-Parser\DNARocketLeagueReplayParser\DNARocketLeagueReplayParser.csproj" />
-	  <ProjectReference Include="..\..\RocketLeagueReplayExtractorAPI\RocketLeagueReplayExtractorAPI\RocketLeagueReplayParserAPI.csproj" />
+		<None Include="../README.md" Pack="true" PackagePath=""/>
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\DNA-CLI-Framework\DNA-CLI-Framework\DNA-CLI-Framework.csproj" />
+		<ProjectReference Include="..\..\DNA-Rocket-League-Replay-Parser\DNARocketLeagueReplayParser\DNARocketLeagueReplayParser.csproj" />
+		<ProjectReference Include="..\..\RocketLeagueReplayExtractorAPI\RocketLeagueReplayExtractorAPI\RocketLeagueReplayParserAPI.csproj" />
 	</ItemGroup>
 
 </Project>
+
