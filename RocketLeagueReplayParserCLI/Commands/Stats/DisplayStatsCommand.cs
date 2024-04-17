@@ -18,7 +18,7 @@ namespace RocketLeagueReplayParserCLI.Commands.Stats
         /// <summary>
         /// The Stat Type to Display
         /// </summary>
-        public abstract GameStats Stat { get; }
+        public abstract string Stat { get; }
 
         /// <inheritdoc/>
         public override string CommandName => Stat.ToString();
@@ -46,11 +46,11 @@ namespace RocketLeagueReplayParserCLI.Commands.Stats
         /// Displays the Saves of a certain Player
         /// </summary>
         /// <param name="args"></param>
-        private void DisplayPlayerStat(string[] args, GameStats stat)
+        private void DisplayPlayerStat(string[] args, string stat)
         {
             string playerName = args[0];
 
-            PlayerInfo? player = Data.Replay.Players.Where(p => p.PlayerName.Replace(" ", "") == playerName).FirstOrDefault();
+            PlayerInfo? player = Data.Replay.MatchRoster.GetAllPlayers().Where(p => p.PlayerName.Replace(" ", "") == playerName).FirstOrDefault();
 
             if (player == null)
             {
@@ -59,20 +59,20 @@ namespace RocketLeagueReplayParserCLI.Commands.Stats
             }
 
             Console.ForegroundColor = player.Team == Replay.BLUE_TEAM ? ConsoleColor.Blue : ConsoleColor.Red;
-            Console.WriteLine($"{player.PlayerName} Has {player.GetStat(stat)} {stat}");
+            Console.WriteLine($"{player.PlayerName} Has {player.GetStat<float>(stat)} {stat}");
             Console.ResetColor();
         }
 
         /// <summary>
         /// Displays each Teams individual Saves
         /// </summary>
-        private void DisplayTeamStat(GameStats stat)
+        private void DisplayTeamStat(string stat)
         {
             Table statTable = new Table();
 
             statTable.SetTitle($"{stat}");
             statTable.AddRow("Blue Team", "Orange Team");
-            statTable.AddRow($"{Data.Replay.GetTeamStat(true, stat)}", $"{Data.Replay.GetTeamStat(false, stat)}");
+            statTable.AddRow($"{Data.Replay.MatchRoster.BlueTeam.GetTeamStat(stat)}", $"{Data.Replay.MatchRoster.OrangeTeam.GetTeamStat(stat)}");
             statTable.PrintTable();
         }
     }

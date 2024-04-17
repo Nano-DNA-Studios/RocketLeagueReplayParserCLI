@@ -38,14 +38,14 @@ namespace RocketLeagueReplayParserCLI.Commands
 
             DisplayTeamData(Replay.BLUE_TEAM);
             DisplayTeamData(Replay.ORANGE_TEAM);
-            DisplayTeamPercentage(GameStats.BallTouches, "Team Touches");
-            DisplayTeamPercentage(GameStats.BallPossessionTime, "Team Ball Possession Time");
+            DisplayTeamPercentage(GameProperties.BallTouches, "Team Touches");
+            DisplayTeamPercentage(GameProperties.BallPossessionTime, "Team Ball Possession Time");
         }
 
-        private void DisplayTeamPercentage(GameStats stat, string title)
+        private void DisplayTeamPercentage(string stat, string title)
         {
-            float blueStat = Data.Replay.GetTeamStat(true, stat);
-            float orangeStat = Data.Replay.GetTeamStat(false, stat);
+            float blueStat = Data.Replay.MatchRoster.Teams[GameProperties.BlueTeamID].GetTeamStat(stat);
+            float orangeStat = Data.Replay.MatchRoster.Teams[GameProperties.OrangeTeamID].GetTeamStat(stat);
 
             ProgressBar.PrintProgressBar(blueStat, ProgressBar.BlueVsBlue, title, maxValue: blueStat + orangeStat, useBorder: true);
         }
@@ -64,13 +64,13 @@ namespace RocketLeagueReplayParserCLI.Commands
                 Console.ForegroundColor = isBlue ? ConsoleColor.Blue : ConsoleColor.Red;
                 scoreboardTable.SetTitle(isBlue ? "Blue Team Scoreboard" : "Orange Team Scoreboard");
                 scoreboardTable.AddRow("PlayerName", "Score", "Goals", "Assists", "Saves", "Shots", "Touches", "Touch Percentage (%)", "Ball Possesion Time (s)", "Ball Possession Percentage (%)");
-                foreach (PlayerInfo player in Data.Replay.Players)
+                foreach (PlayerInfo player in Data.Replay.MatchRoster.GetAllPlayers())
                 {
                     if (player.Team == teamID)
                         scoreboardTable.AddRow(player.GetScoreboardInfo());
                 }
 
-                scoreboardTable.AddRow(["Total", .. Data.Replay.GetTeamScoreboard(isBlue)]);
+                scoreboardTable.AddRow(["Total", .. Data.Replay.MatchRoster.Teams[teamID].GetTeamScoreboard()]);
                 scoreboardTable.PrintTable();
             }
             finally
