@@ -58,7 +58,7 @@ namespace RocketLeagueReplayParserCLI.Commands.Stats
                 return;
             }
 
-            Console.ForegroundColor = player.Team == Replay.BLUE_TEAM ? ConsoleColor.Blue : ConsoleColor.Red;
+            Console.ForegroundColor = player.Team == GameProperties.BlueTeamID ? ConsoleColor.Blue : ConsoleColor.Red;
             Console.WriteLine($"{player.PlayerName} Has {player.GetStat<float>(stat)} {stat}");
             Console.ResetColor();
         }

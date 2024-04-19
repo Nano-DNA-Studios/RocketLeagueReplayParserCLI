@@ -36,8 +36,8 @@ namespace RocketLeagueReplayParserCLI.Commands
             Console.WriteLine($"Replay File Name: {Data.Replay.GetReplayFileName()}");
             Console.WriteLine($"Replay Name: {Data.Replay.ReplayName}");
 
-            DisplayTeamData(Replay.BLUE_TEAM);
-            DisplayTeamData(Replay.ORANGE_TEAM);
+            DisplayTeamData(GameProperties.BlueTeamID);
+            DisplayTeamData(GameProperties.OrangeTeamID);
             DisplayTeamPercentage(GameProperties.BallTouches, "Team Touches");
             DisplayTeamPercentage(GameProperties.BallPossessionTime, "Team Ball Possession Time");
         }
@@ -58,7 +58,7 @@ namespace RocketLeagueReplayParserCLI.Commands
         {
             try
             {
-                bool isBlue = teamID == Replay.BLUE_TEAM;
+                bool isBlue = teamID == GameProperties.BlueTeamID;
                 Table scoreboardTable = new Table();
 
                 Console.ForegroundColor = isBlue ? ConsoleColor.Blue : ConsoleColor.Red;

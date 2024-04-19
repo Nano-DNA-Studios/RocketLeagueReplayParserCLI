@@ -20,9 +20,9 @@ namespace RocketLeagueReplayParserCLI.Commands
         {
             ReplayParserDataManager data = ApplicationData<ReplayParserDataManager>.Instance();
 
-            if (data.Replay.ReplayName == Replay.UNNAMED_REPLAY)
+            if (data.Replay.ReplayName == GameProperties.UnamedReplay)
             {
-                data.Replay.RenameAndSave(Replay.UNNAMED_REPLAY + data.UnnamedCounter);
+                data.Replay.RenameAndSave(GameProperties.UnamedReplay + data.UnnamedCounter);
                 data.UnnamedCounter++;
             } else
                 data.Replay.RenameAndSave();
