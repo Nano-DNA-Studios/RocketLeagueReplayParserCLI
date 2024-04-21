@@ -38,10 +38,15 @@ namespace RocketLeagueReplayParserCLI.Commands
 
             DisplayTeamData(GameProperties.BlueTeamID);
             DisplayTeamData(GameProperties.OrangeTeamID);
-            DisplayTeamPercentage(GameProperties.BallTouches, "Team Touches");
+            DisplayTeamPercentage(GameProperties.BallTouchCount, "Team Touches");
             DisplayTeamPercentage(GameProperties.BallPossessionTime, "Team Ball Possession Time");
         }
 
+        /// <summary>
+        /// Displays the Percentage of the Team's Stat in a Progress Bar Format
+        /// </summary>
+        /// <param name="stat"> Stat to Display </param>
+        /// <param name="title"> Title of the Progress Bar </param>
         private void DisplayTeamPercentage(string stat, string title)
         {
             float blueStat = Data.Replay.MatchRoster.Teams[GameProperties.BlueTeamID].GetTeamStat(stat);
@@ -63,14 +68,17 @@ namespace RocketLeagueReplayParserCLI.Commands
 
                 Console.ForegroundColor = isBlue ? ConsoleColor.Blue : ConsoleColor.Red;
                 scoreboardTable.SetTitle(isBlue ? "Blue Team Scoreboard" : "Orange Team Scoreboard");
-                scoreboardTable.AddRow("PlayerName", "Score", "Goals", "Assists", "Saves", "Shots", "Touches", "Touch Percentage (%)", "Ball Possesion Time (s)", "Ball Possession Percentage (%)");
+
+                string[] headers = ["PlayerName", ..PlayerInfo.DisplayStatsWithUnits];
+                scoreboardTable.AddRow(headers);
+
                 foreach (PlayerInfo player in Data.Replay.MatchRoster.GetAllPlayers())
                 {
                     if (player.Team == teamID)
                         scoreboardTable.AddRow(player.GetScoreboardInfo());
                 }
 
-                scoreboardTable.AddRow(["Total", .. Data.Replay.MatchRoster.Teams[teamID].GetTeamScoreboard()]);
+                scoreboardTable.AddRow(Data.Replay.MatchRoster.Teams[teamID].GetTeamScoreboard());
                 scoreboardTable.PrintTable();
             }
             finally
