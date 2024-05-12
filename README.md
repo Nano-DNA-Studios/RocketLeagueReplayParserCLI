@@ -25,8 +25,7 @@ rlparse GoldenGoose.replay
 
 This will display barebones information about the Replay
 
-![image](https://github.com/Nano-DNA-Studios/RocketLeagueReplayParserCLI/assets/93613553/1fd47db7-4364-4f1c-a673-7d639d7c546a)
-
+![image](https://github.com/Nano-DNA-Studios/RocketLeagueReplayParserCLI/assets/93613553/c003eb71-e461-4937-bbe9-3d95fd20cb0b)
 
 
 ## Commands
