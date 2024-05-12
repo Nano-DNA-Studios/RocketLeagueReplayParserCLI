@@ -9,7 +9,6 @@
 		<ToolCommandName>rlparse</ToolCommandName>
 		<PackageOutputPath>../Release</PackageOutputPath>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
-
 		<PackageId>RocketLeagueReplayParserCLI</PackageId>
 		<Version>1.0.3</Version>
 		<Authors>MrDNA</Authors>
