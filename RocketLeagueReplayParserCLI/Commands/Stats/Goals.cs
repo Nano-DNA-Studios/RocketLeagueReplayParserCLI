@@ -8,6 +8,6 @@ namespace RocketLeagueReplayParserCLI.Commands.Stats
     internal class Goals : DisplayStatsCommand
     {
         /// <inheritdoc/>
-        public override GameStats Stat => GameStats.Goals;
+        public override string Stat => GameProperties.Goals;
     }
 }

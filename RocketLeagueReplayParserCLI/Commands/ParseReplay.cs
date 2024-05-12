@@ -36,16 +36,21 @@ namespace RocketLeagueReplayParserCLI.Commands
             Console.WriteLine($"Replay File Name: {Data.Replay.GetReplayFileName()}");
             Console.WriteLine($"Replay Name: {Data.Replay.ReplayName}");
 
-            DisplayTeamData(Replay.BLUE_TEAM);
-            DisplayTeamData(Replay.ORANGE_TEAM);
-            DisplayTeamPercentage(GameStats.BallTouches, "Team Touches");
-            DisplayTeamPercentage(GameStats.BallPossessionTime, "Team Ball Possession Time");
+            DisplayTeamData(GameProperties.BlueTeamID);
+            DisplayTeamData(GameProperties.OrangeTeamID);
+            DisplayTeamPercentage(GameProperties.BallTouchCount, "Team Touches");
+            DisplayTeamPercentage(GameProperties.BallPossessionTime, "Team Ball Possession Time");
         }
 
-        private void DisplayTeamPercentage(GameStats stat, string title)
+        /// <summary>
+        /// Displays the Percentage of the Team's Stat in a Progress Bar Format
+        /// </summary>
+        /// <param name="stat"> Stat to Display </param>
+        /// <param name="title"> Title of the Progress Bar </param>
+        private void DisplayTeamPercentage(string stat, string title)
         {
-            float blueStat = Data.Replay.GetTeamStat(true, stat);
-            float orangeStat = Data.Replay.GetTeamStat(false, stat);
+            float blueStat = Data.Replay.MatchRoster.Teams[GameProperties.BlueTeamID].GetTeamStat(stat);
+            float orangeStat = Data.Replay.MatchRoster.Teams[GameProperties.OrangeTeamID].GetTeamStat(stat);
 
             ProgressBar.PrintProgressBar(blueStat, ProgressBar.BlueVsBlue, title, maxValue: blueStat + orangeStat, useBorder: true);
         }
@@ -58,19 +63,22 @@ namespace RocketLeagueReplayParserCLI.Commands
         {
             try
             {
-                bool isBlue = teamID == Replay.BLUE_TEAM;
+                bool isBlue = teamID == GameProperties.BlueTeamID;
                 Table scoreboardTable = new Table();
 
                 Console.ForegroundColor = isBlue ? ConsoleColor.Blue : ConsoleColor.Red;
                 scoreboardTable.SetTitle(isBlue ? "Blue Team Scoreboard" : "Orange Team Scoreboard");
-                scoreboardTable.AddRow("PlayerName", "Score", "Goals", "Assists", "Saves", "Shots", "Touches", "Touch Percentage (%)", "Ball Possesion Time (s)", "Ball Possession Percentage (%)");
-                foreach (PlayerInfo player in Data.Replay.Players)
+
+                string[] headers = ["PlayerName", ..PlayerInfo.DisplayStatsWithUnits];
+                scoreboardTable.AddRow(headers);
+
+                foreach (PlayerInfo player in Data.Replay.MatchRoster.GetAllPlayers())
                 {
                     if (player.Team == teamID)
                         scoreboardTable.AddRow(player.GetScoreboardInfo());
                 }
 
-                scoreboardTable.AddRow(["Total", .. Data.Replay.GetTeamScoreboard(isBlue)]);
+                scoreboardTable.AddRow(Data.Replay.MatchRoster.Teams[teamID].GetTeamScoreboard());
                 scoreboardTable.PrintTable();
             }
             finally
