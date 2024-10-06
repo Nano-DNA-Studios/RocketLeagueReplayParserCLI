@@ -10,7 +10,7 @@
 		<PackageOutputPath>../Release</PackageOutputPath>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageId>RocketLeagueReplayParserCLI</PackageId>
-		<Version>1.0.3</Version>
+		<Version>1.0.4</Version>
 		<Authors>MrDNA</Authors>
 		<Company>NanoDNA Studios</Company>
 	</PropertyGroup>
