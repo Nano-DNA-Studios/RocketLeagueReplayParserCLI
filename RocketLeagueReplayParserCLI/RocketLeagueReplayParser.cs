@@ -1,5 +1,5 @@
-﻿using DNA_CLI_Framework;
-using DNA_CLI_Framework.Data;
+﻿using DNA.CLIFramework;
+using DNA.CLIFramework.Data;
 
 namespace RocketLeagueReplayParserCLI
 {
